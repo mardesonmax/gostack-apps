@@ -17,6 +17,12 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   rules: {
     camelcase: 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '_',
+      },
+    ],
     'class-methods-use-this': 'off',
     'import/extensions': [
       'error',
