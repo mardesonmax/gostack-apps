@@ -9,6 +9,10 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background: #F2F2FA url(${githubBackground}) no-repeat 70% top;
   }

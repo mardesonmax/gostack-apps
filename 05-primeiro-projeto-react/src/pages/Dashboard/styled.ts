@@ -61,6 +61,10 @@ export const Repository = styled.div`
     &:hover {
       box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
       transform: translateX(10px);
+
+      svg {
+        color: #04d361;
+      }
     }
 
     & + a {
@@ -91,6 +95,7 @@ export const Repository = styled.div`
 
     svg {
       color: #c9c9d4;
+      transition: color 0.2s;
     }
   }
 `;

@@ -20,6 +20,7 @@ module.exports = {
   },
   plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier'],
   rules: {
+    camelcase: 'off',
     'no-use-before-define': 'off',
     'prettier/prettier': 'error',
     'react/jsx-one-expression-per-line': 'off',
