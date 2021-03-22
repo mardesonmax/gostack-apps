@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from 'react';
 import { FaAngleRight } from 'react-icons/fa';
-import { Form, Title, Repository } from './styled';
+import { Form, Title, Repository, Error } from './styled';
 import logo from '../../assets/logo.svg';
 import api from '../../services/api';
 
@@ -15,27 +15,41 @@ interface Repository {
 
 const Dashboard: React.FC = () => {
   const [search, setSearch] = useState('');
+  const [formError, setFormError] = useState('');
   const [repositories, setRepositories] = useState<Repository[]>([]);
 
   const handleAddRepository = async (
     event: FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     event.preventDefault();
-    const response = await api.get<Repository>(`repos/${search}`);
-    setSearch('');
+    if (!search) {
+      setFormError('Para encontrar insira usuário/repositório');
+      return;
+    }
 
-    const repository = response.data;
+    try {
+      const response = await api.get<Repository>(`repos/${search}`);
 
-    const repositoryExist = repositories.find(
-      (repo) => repo.full_name === repository.full_name,
-    );
+      const repository = response.data;
 
-    if (repositoryExist) return;
+      const repositoryExist = repositories.find(
+        (repo) => repo.full_name === repository.full_name,
+      );
 
-    setRepositories([...repositories, repository]);
+      if (repositoryExist) {
+        setFormError('Repositório já esta na lista');
+        return;
+      }
 
-    const heightPage = document.body.scrollHeight;
-    window.scrollTo(0, heightPage);
+      setRepositories([...repositories, repository]);
+      setSearch('');
+      setFormError('');
+
+      const heightPage = document.body.scrollHeight;
+      window.scrollTo(0, heightPage);
+    } catch {
+      setFormError(`Error ao tentar encontar: ${search}`);
+    }
   };
 
   return (
@@ -43,7 +57,7 @@ const Dashboard: React.FC = () => {
       <img src={logo} alt="Github Explore" />
       <Title>Explore repositórios no github</Title>
 
-      <Form onSubmit={handleAddRepository}>
+      <Form hasError={!!formError} onSubmit={handleAddRepository}>
         <input
           id="search"
           value={search}
@@ -53,6 +67,8 @@ const Dashboard: React.FC = () => {
         />
         <button type="submit">Pesquisar</button>
       </Form>
+
+      {formError && <Error>{formError}</Error>}
 
       <Repository>
         {repositories.map((repository) => (
