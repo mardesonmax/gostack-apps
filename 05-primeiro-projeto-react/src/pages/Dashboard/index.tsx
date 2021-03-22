@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import { FaAngleRight } from 'react-icons/fa';
 import { Form, Title, Repository, Error } from './styled';
 import logo from '../../assets/logo.svg';
@@ -16,7 +16,18 @@ interface Repository {
 const Dashboard: React.FC = () => {
   const [search, setSearch] = useState('');
   const [formError, setFormError] = useState('');
-  const [repositories, setRepositories] = useState<Repository[]>([]);
+  const [repositories, setRepositories] = useState<Repository[]>(() => {
+    const storageRepositories = localStorage.getItem('repositories');
+    if (storageRepositories) {
+      return JSON.parse(storageRepositories);
+    }
+
+    return [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('repositories', JSON.stringify(repositories));
+  }, [repositories]);
 
   const handleAddRepository = async (
     event: FormEvent<HTMLFormElement>,
