@@ -1,8 +1,10 @@
 import React from 'react';
-import { FaSignInAlt } from 'react-icons/fa';
+import { FaEnvelope, FaLock, FaSignInAlt } from 'react-icons/fa';
 
 import { Background, Container, Content } from './styled';
 import logoSvg from '../../assets/logo.svg';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
 
 const SignIn: React.FC = () => (
   <Container>
@@ -10,10 +12,10 @@ const SignIn: React.FC = () => (
       <img src={logoSvg} alt="GoBarber" />
       <form>
         <h1>Faça seu login</h1>
-        <input placeholder="E-mail" />
-        <input type="password" placeholder="Senha" />
+        <Input name="email" icon={FaEnvelope} placeholder="E-mail" />
+        <Input name="email" icon={FaLock} type="password" placeholder="Senha" />
 
-        <button type="submit">Entrar</button>
+        <Button type="submit">Entrar</Button>
         <a href="forgot">Esqueci minha senha</a>
       </form>
       <a href="register">
