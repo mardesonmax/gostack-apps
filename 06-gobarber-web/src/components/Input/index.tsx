@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { IconBaseProps } from 'react-icons';
-import { FaInfoCircle } from 'react-icons/fa';
+import { FaExclamationCircle } from 'react-icons/fa';
 
 import { Container, Error } from './styled';
 
@@ -49,7 +49,7 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
       />
       {error && (
         <Error title={error}>
-          <FaInfoCircle size={18} color="#c53030" />
+          <FaExclamationCircle size={18} color="#c53030" />
         </Error>
       )}
     </Container>

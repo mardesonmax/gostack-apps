@@ -44,7 +44,7 @@ const SignUp: React.FC = () => {
       <Content>
         <img src={logoSvg} alt="GoBarber" />
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <h1>Faça seu login</h1>
+          <h1>Faça seu cadastro</h1>
           <Input name="name" icon={FaUser} placeholder="Nome" />
           <Input name="email" icon={FaEnvelope} placeholder="E-mail" />
           <Input
