@@ -1,15 +1,15 @@
-import React, { useCallback, useContext, useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import { FaEnvelope, FaLock, FaSignInAlt } from 'react-icons/fa';
 import * as Yup from 'yup';
 
+import { Background, Container, Content } from './styled';
 import logoSvg from '../../assets/logo.svg';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import getValidationErrors from '../../utils/getValidationErros';
-import { Background, Container, Content } from './styled';
-import { AuthContext } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
+import getValidationErrors from '../../utils/getValidationErrors';
 
 interface SingInFormData {
   name: string;
@@ -19,9 +19,7 @@ interface SingInFormData {
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const { user, signIn } = useContext(AuthContext);
-
-  console.log(user);
+  const { signIn } = useAuth();
 
   const handleSubmit = useCallback(
     async (data: SingInFormData) => {

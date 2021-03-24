@@ -2,13 +2,13 @@ import React, { useCallback, useRef } from 'react';
 import { FaEnvelope, FaLock, FaUser, FaArrowLeft } from 'react-icons/fa';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
-
 import * as Yup from 'yup';
+
 import { Background, Container, Content } from './styled';
 import logoSvg from '../../assets/logo.svg';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import getValidationErrors from '../../utils/getValidationErros';
+import getValidationErrors from '../../utils/getValidationErrors';
 
 interface SingUpFormData {
   name: string;
