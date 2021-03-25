@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
 import signInBackground from '../../assets/sign-in-background.png';
@@ -6,6 +6,18 @@ import signInBackground from '../../assets/sign-in-background.png';
 export const Container = styled.div`
   display: flex;
   min-height: 100vh;
+  overflow-x: hidden;
+`;
+
+const animeLeft = keyframes`
+  from {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 `;
 
 export const Content = styled.div`
@@ -14,15 +26,16 @@ export const Content = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 60px 10px;
-  max-width: 700px;
+  padding: 15px;
+  max-width: 600px;
+  animation: ${animeLeft} 1s;
 
   img {
-    margin-top: 20px;
+    width: 200px;
   }
 
   form {
-    margin: 80px 0;
+    margin: 60px 0;
     max-width: 360px;
     text-align: center;
 
@@ -59,8 +72,18 @@ export const Content = styled.div`
   }
 `;
 
+const animeOpacity = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
 export const Background = styled.div`
   flex: 1;
   background: url(${signInBackground}) no-repeat center;
   background-size: cover;
+  animation: ${animeOpacity} 1s;
 `;

@@ -4,6 +4,7 @@ import { Form } from '@unform/web';
 import { FaEnvelope, FaLock, FaSignInAlt } from 'react-icons/fa';
 import * as Yup from 'yup';
 
+import { Link } from 'react-router-dom';
 import { Background, Container, Content } from './styled';
 import logoSvg from '../../assets/logo.svg';
 import Button from '../../components/Button';
@@ -58,7 +59,6 @@ const SignIn: React.FC = () => {
 
   return (
     <Container>
-      <Background />
       <Content>
         <img src={logoSvg} alt="GoBarber" />
         <Form ref={formRef} onSubmit={handleSubmit}>
@@ -74,10 +74,11 @@ const SignIn: React.FC = () => {
           <Button type="submit">Entrar</Button>
           <a href="forgot">Esqueci minha senha</a>
         </Form>
-        <a href="register">
+        <Link to="/sign_up">
           <FaSignInAlt /> Criar conta
-        </a>
+        </Link>
       </Content>
+      <Background />
     </Container>
   );
 };
