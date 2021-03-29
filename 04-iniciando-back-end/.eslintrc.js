@@ -2,6 +2,7 @@ module.exports = {
   env: {
     es2021: true,
     node: true,
+    jest: true,
   },
   extends: [
     'airbnb-base',
@@ -20,6 +21,8 @@ module.exports = {
     'prettier/prettier': 'error',
     'class-methods-use-this': 'off',
     camelcase: 'off',
+    'import/no-extraneous-dependencies': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
     'no-useless-constructor': 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',

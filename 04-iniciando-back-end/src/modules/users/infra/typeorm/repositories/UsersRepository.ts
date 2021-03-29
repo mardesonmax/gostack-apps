@@ -3,14 +3,14 @@ import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import { getRepository, Repository } from 'typeorm';
 import User from '../entities/User';
 
-class UserRepository implements IUsersRepository {
+class UsersRepository implements IUsersRepository {
   private ormRepository: Repository<User>;
 
   constructor() {
     this.ormRepository = getRepository(User);
   }
 
-  async findByEmail(email: string): Promise<User> {
+  async findByEmail(email: string): Promise<User | undefined> {
     const user = await this.ormRepository.findOne({
       where: { email },
     });
@@ -18,7 +18,7 @@ class UserRepository implements IUsersRepository {
     return user;
   }
 
-  async findById(id: string): Promise<User> {
+  async findById(id: string): Promise<User | undefined> {
     const user = await this.ormRepository.findOne(id);
 
     return user;
@@ -36,4 +36,4 @@ class UserRepository implements IUsersRepository {
   }
 }
 
-export default UserRepository;
+export default UsersRepository;
