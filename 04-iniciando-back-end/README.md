@@ -43,7 +43,7 @@
 - O prestador deve receber uma notificação sempre que houver um novo agendamento;
 - O prestador deve poder visualizar as notificações não lidas;
 
-**RnF**
+**RNF**
 
 - Os agendamentos do prestador no dia devem ser armazenadas em cache;
 - As notificações do prestador deve ser armazenadas no MongoDB;
