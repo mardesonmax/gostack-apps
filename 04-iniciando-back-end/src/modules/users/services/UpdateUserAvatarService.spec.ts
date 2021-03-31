@@ -11,7 +11,7 @@ let fakeStorageProvider: FakeStorageProvider;
 let updateUserAvatar: UpdateUserAvatarService;
 let createUser: CreateUserService;
 
-describe('UpdateUserAvatar', () => {
+describe('UpdateUserAvatarService', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
     fakeHashProvider = new FakeHashProvider();
@@ -31,12 +31,12 @@ describe('UpdateUserAvatar', () => {
       password: '123456',
     });
 
-    await updateUserAvatar.execute({
+    const updateAvatar = await updateUserAvatar.execute({
       user_id: user.id,
       filename: 'avatar.png',
     });
 
-    expect(user.avatar).toBe('avatar.png');
+    expect(updateAvatar.avatar).toBe('avatar.png');
   });
 
   it('should not be able to update avatar from user non authenticated', async () => {
@@ -62,12 +62,12 @@ describe('UpdateUserAvatar', () => {
       filename: 'avatar.png',
     });
 
-    await updateUserAvatar.execute({
+    const updateAvatar = await updateUserAvatar.execute({
       user_id: user.id,
       filename: 'avatar2.png',
     });
 
     expect(deleteFile).toHaveBeenCalledWith('avatar.png');
-    expect(user.avatar).toBe('avatar2.png');
+    expect(updateAvatar.avatar).toBe('avatar2.png');
   });
 });

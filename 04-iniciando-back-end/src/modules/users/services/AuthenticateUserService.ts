@@ -2,6 +2,7 @@ import auth from '@config/auth';
 import AppError from '@shared/errors/AppError';
 import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 import User from '../infra/typeorm/entities/User';
 import IHashProvider from '../provider/HashProvider/models/IHashProvider';
@@ -51,7 +52,7 @@ class AuthenticateUserService {
     });
 
     return {
-      user,
+      user: classToClass(user),
       token,
     };
   }

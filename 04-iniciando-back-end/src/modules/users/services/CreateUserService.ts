@@ -1,4 +1,5 @@
 import AppError from '@shared/errors/AppError';
+import { classToClass } from 'class-transformer';
 import { inject, injectable } from 'tsyringe';
 
 import User from '../infra/typeorm/entities/User';
@@ -35,7 +36,7 @@ class CreateUserService {
       password: passwordHash,
     });
 
-    return user;
+    return classToClass(user);
   }
 }
 

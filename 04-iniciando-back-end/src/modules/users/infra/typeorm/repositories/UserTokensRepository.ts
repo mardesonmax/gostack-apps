@@ -21,7 +21,7 @@ class UserTokensRepository implements IUserTokensRepository {
     return this.ormRepository.findOne({ where: { token } });
   }
 
-  async updateToken(userToken: UserToken): Promise<void> {
+  async setUsedToken(userToken: UserToken): Promise<void> {
     await this.ormRepository.save({ ...userToken, used: true });
   }
 }

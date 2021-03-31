@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { differenceInHours } from 'date-fns';
+import { classToClass } from 'class-transformer';
 
 import AppError from '@shared/errors/AppError';
 import IUsersRepository from '../repositories/IUsersRepository';
@@ -55,7 +56,7 @@ class ResetPasswordService {
 
     await this.userTokensRepository.setUsedToken(userToken);
 
-    return result;
+    return classToClass(result);
   }
 }
 

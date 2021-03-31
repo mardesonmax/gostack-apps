@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 import IStorageProvider from '@shared/container/provider/StorageProvider/models/IStorageProvider';
 import AppError from '@shared/errors/AppError';
@@ -35,7 +36,7 @@ class UpdateUserAvatarService {
 
     await this.usersRepository.save(user);
 
-    return user;
+    return classToClass(user);
   }
 }
 
