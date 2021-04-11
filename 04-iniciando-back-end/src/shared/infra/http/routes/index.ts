@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import appointmentRouter from './appointments.routes';
-import usersRouter from './users.routes';
-import sessionsRouter from './sessions.routes';
-import passwordRouter from './password.routes';
-import profileRoutes from './profile.routes';
+import usersRouter from '@modules/users/infra/http/routes/users.routes';
+import passwordRouter from '@modules/users/infra/http/routes/password.routes';
+import sessionsRouter from '@modules/users/infra/http/routes/sessions.routes';
+import profileRoutes from '@modules/users/infra/http/routes/profile.routes';
+import appointmentRouter from '@modules/appointments/infra/http/routes/appointments.routes';
 
 const routes = Router();
 

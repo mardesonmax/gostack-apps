@@ -72,13 +72,15 @@ describe('UpdateProfileService', () => {
   });
 
   it('should be able to update the password', async () => {
+    const spy = jest.spyOn(fakeHashProvider, 'generateHash');
+
     const user = await createUser.execute({
       name: 'John Doe',
       email: 'johndoe@example.com',
       password: '123456',
     });
 
-    const updatePassword = await updateProfile.execute({
+    await updateProfile.execute({
       user_id: user.id,
       name: 'Test',
       email: 'johndoe@example.com',
@@ -86,7 +88,7 @@ describe('UpdateProfileService', () => {
       password: '123123',
     });
 
-    expect(updatePassword.password).toBe('123123');
+    expect(spy).toHaveBeenCalledWith('123123');
   });
 
   it('should not be able to update the password without passing the old password', async () => {
