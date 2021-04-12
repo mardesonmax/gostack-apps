@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import ListProvidersServices from '@modules/appointments/services/ListProvidersServices';
+import ListProvidersService from '@modules/appointments/services/ListProvidersService';
 
 class ProvidersController {
-  async list(request: Request, response: Response): Promise<Response> {
+  async index(request: Request, response: Response): Promise<Response> {
     const user_id = request.user.id;
 
-    const listProviders = container.resolve(ListProvidersServices);
+    const listProviders = container.resolve(ListProvidersService);
 
     const providers = await listProviders.execute({
       user_id,
